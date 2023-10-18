@@ -6,26 +6,48 @@
 /*   By: mcatalan@student.42barcelona.com <mcata    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 16:32:26 by mcatalan          #+#    #+#             */
-/*   Updated: 2023/10/05 11:49:33 by mcatalan@st      ###   ########.fr       */
+/*   Updated: 2023/10/18 18:14:57 by mcatalan@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./../includes/so_long.h"
+
+// void	messages(char *msg, t_game *game)
+// {
+// 	printf("%s", msg);
+// 	map_destroy(game);
+// 	exit(0);
+// }
+
+int keyboard(int key_press, t_game *game)
+{
+	if (key_press == ESC)
+		destroy_window(game);
+	if (key_press == UP)
+		up(game);
+	if (key_press == RIGHT)
+		right(game);
+	if (key_press == LEFT)
+		left(game);
+	if (key_press == DOWN)
+		down(game);
+	return (0);
+}
 
 void	helper(void)
 {
 	ft_printf("HOW TO PLAY SO_LONG:\n","\tW:\n","\tS\n","\tA\n", "\tD\n");
 }
 
-int	start(t_game *game)
+void	start(t_game *game)
 {
-	game->collectable = 0;
+	game->items = 0;
 	game->exitpos = 0;
 	game->player.collectible = 0;
-	game->playerpos = 0;
+	game->ppos = 0;
 }
 
-int game(int argc, char **argv)
+void	game(char **argv)
 {
 	t_game game;
 	
@@ -33,18 +55,24 @@ int game(int argc, char **argv)
 	game.mlx = mlx_init();
 	game.win = mlx_new_window(game.mlx, game.size_x, game.size_y, "mcatalan SO_LONG");
 	start(&game);
-	create_map();
+	create_map(&game, argv);
+	mlx_hook(game.win, 17, 1L << 2, mlx_destroy_window, &game);
+	mlx_key_hook(game.win, keyboard, &game);
+	mlx_loop(game.mlx);
 }
 
-int checker(void)
+int checker(int argc, char **argv)
 {
+	(void)argc;
+	(void)**argv;
 	ft_printf("esto es checker");
+	return(0);
 }
 
 int so_long(int argc, char **argv)
 {
-	checker();
-	game(argc, argv);
+	checker(argc, argv);
+	game(argv);
 	return(0);
 }
 

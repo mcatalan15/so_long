@@ -6,7 +6,7 @@
 #    By: mcatalan@student.42barcelona.com <mcata    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/04 10:58:09 by mcatalan@st       #+#    #+#              #
-#    Updated: 2023/10/04 14:45:35 by mcatalan@st      ###   ########.fr        #
+#    Updated: 2023/10/18 21:16:37 by mcatalan@st      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,13 +20,18 @@ CC = gcc
 
 NAME 	= 	so_long
 
-SRCS		= 	src/main.c 
+SRCS		= 	src/main.c	\
+				src/controlls.c\
+				src/map.c	\
+				src/movements.c \
+				src/utils.c	\
+				src/window.c	\
 
 OBJ 		= 	$(SRCS:.c=.o)
 
-MLX_DIR 	= includes/mlx/
-MLX_LIB 	= $(MLX_DIR)libmlx.a
-MLX_FLAGS 	= -Lincludes/mlx -lmlx -framework OpenGL -framework AppKit
+MLX_D		= includes/mlx/
+MLX_LIB 	= $(MLX_D)libmlx.a
+MLX_FLAGS 	= -L./includes/mlx -lmlx -framework OpenGL -framework AppKit
 
 CFLAGS  =  -Wall -Wextra -Werror
 
@@ -48,20 +53,27 @@ $(NAME):	$(OBJ) $(LIBFT_D)$(LIBFT) $(FT_PRINTF_D)$(FT_PRINTF)
 all:		subsystems $(NAME)
 
 subsystems:
-	@make	--no-print-directory -C	$(MLX_DIR)
+	@make	--no-print-directory -C	$(MLX_DIR) libmlx.a
 
-# makelibft:
-# 	@make --no-print-directory -C $(LIBFT_D)
+libft:
+	@make --no-print-directory -C $(LIBFT_D) libft
 	
-# makeftprintf:
-# 	@make --no-print-directory -C $(FT_PRINTF_D)
+ftprintf:
+	@make --no-print-directory -C $(FT_PRINTF_D) ftprintf
+
+libs:
+	subsystems printf libft
 
 clean:
-			rm -f $(OBJ)
+	rm -f $(OBJ) $(LIBFT_D)$(LIBFT) $(FT_PRINTF_D)$(FT_PRINTF) $(NAME)
+
 
 fclean:		clean
 			rm -f $(NAME)
 
 re:			fclean all
 
-.PHONY:		all bonus clean fclean re
+# v:			re
+# 			-v
+
+.PHONY:		all clean fclean re subsystems libft ftprintf libs

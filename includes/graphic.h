@@ -6,7 +6,7 @@
 /*   By: mcatalan@student.42barcelona.com <mcata    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 10:25:05 by mcatalan@st       #+#    #+#             */
-/*   Updated: 2023/10/05 11:42:39 by mcatalan@st      ###   ########.fr       */
+/*   Updated: 2023/10/18 12:37:07 by mcatalan@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ typedef struct s_game
 	void	*mlx;
 	void	*win;
 	char	**map;
-	int 	collectable;
-	int		playerpos;
+	int 	items;
+	int		ppos;
 	int		exitpos;
 	size_t	size_x;
 	int		size_y;
@@ -48,7 +48,5 @@ typedef struct s_block
 	char	*name;
 	char	*relative_path;
 }			t_block;
-
-
 
 #endif
