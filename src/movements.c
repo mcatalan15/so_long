@@ -6,15 +6,15 @@
 /*   By: mcatalan@student.42barcelona.com <mcata    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 11:43:10 by mcatalan@st       #+#    #+#             */
-/*   Updated: 2023/10/18 18:00:21 by mcatalan@st      ###   ########.fr       */
+/*   Updated: 2023/10/19 12:48:30 by mcatalan@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./../includes/so_long.h"
 
-void update(t_game *game, int x, int y)
+void	update(t_game *game, int x, int y)
 {
-	t_img img;
+	t_img	img;
 
 	img.relative_path = " ./../img/floor.xpm";
 	img.wlx = *game;
@@ -22,11 +22,11 @@ void update(t_game *game, int x, int y)
 	put_image(img, x, y);
 }
 
-void right(t_game *game)
+void	right(t_game *game)
 {
-	int i; 
-	int j;
-	t_img img;
+	t_img	img;
+	int		i;
+	int		j;
 
 	img.relative_path = "./../img/bayraktarTB2.xpm";
 	img.wlx = *game;
@@ -43,11 +43,11 @@ void right(t_game *game)
 	}
 }
 
-void left(t_game *game)
+void	left(t_game *game)
 {
-	int i;
-	int j;
-	t_img img;
+	int		i;
+	int		j;
+	t_img	img;
 
 	img.relative_path = "./../img/left.xpm";
 	img.wlx = *game;
@@ -64,11 +64,11 @@ void left(t_game *game)
 	}
 }
 
-void up(t_game *game)
+void	up(t_game *game)
 {
-	int i;
-	int j;
-	t_img img;
+	int		i;
+	int		j;
+	t_img	img;
 
 	img.relative_path = "./img/ust.xpm";
 	img.wlx = *game;
@@ -85,11 +85,11 @@ void up(t_game *game)
 	}
 }
 
-void down(t_game *game)
+void	down(t_game *game)
 {
-	int i;
-	int j;
-	t_img img;
+	int		i;
+	int		j;
+	t_img	img;
 
 	img.relative_path = "./img/karakter.xpm";
 	img.wlx = *game;

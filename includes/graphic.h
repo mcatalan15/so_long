@@ -6,7 +6,7 @@
 /*   By: mcatalan@student.42barcelona.com <mcata    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 10:25:05 by mcatalan@st       #+#    #+#             */
-/*   Updated: 2023/10/18 12:37:07 by mcatalan@st      ###   ########.fr       */
+/*   Updated: 2023/10/19 12:37:14 by mcatalan@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,16 @@ typedef struct s_player
 
 typedef struct s_game
 {
-	void	*mlx;
-	void	*win;
-	char	**map;
-	int 	items;
-	int		ppos;
-	int		exitpos;
-	size_t	size_x;
-	int		size_y;
+	void		*mlx;
+	void		*win;
+	char		**map;
+	int			items;
+	int			ppos;
+	int			exitpos;
+	size_t		size_x;
+	int			size_y;
 	t_player	player;
-}			t_game;
+}				t_game;
 
 typedef struct s_img
 {

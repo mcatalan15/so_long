@@ -6,13 +6,13 @@
 /*   By: mcatalan@student.42barcelona.com <mcata    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 20:37:30 by mcatalan@st       #+#    #+#             */
-/*   Updated: 2023/10/18 18:04:24 by mcatalan@st      ###   ########.fr       */
+/*   Updated: 2023/10/19 12:39:08 by mcatalan@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./../includes/so_long.h"
 
-int move_check(t_game *game, int i, int j)
+int	move_check(t_game *game, int i, int j)
 {
 	if (game->map[i][j] == '1')
 		return (1);
@@ -35,10 +35,10 @@ int move_check(t_game *game, int i, int j)
 	return (0);
 }
 
-void map_control(t_game *game)
+void	map_control(t_game *game)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	while (game->map[i])
@@ -63,10 +63,10 @@ void map_control(t_game *game)
 		// message("Error\nYou can only have 1 character!\n", game);
 }
 
-void wall_control(t_game *game)
+void	wall_control(t_game *game)
 {
-	size_t x;
-	int y;
+	size_t	x;
+	int		y;
 
 	y = 0;
 	while (y < (game->size_y / SIZE))
@@ -77,7 +77,9 @@ void wall_control(t_game *game)
 			if ((y == 0 || x == 0) && game->map[y][x] != '1')
 				ft_printf("Error\nThe map must be walled\n");
 				// message(RED "Error\nThe map must be walled\n" ENDC, game);
-			else if ((y == (game->size_y / SIZE - 1) || x == (game->size_x / SIZE - 1)) && game->map[y][x] != '1')
+			else if ((y == (game->size_y / SIZE - 1)
+					|| x == (game->size_x / SIZE - 1))
+				&& game->map[y][x] != '1')
 				ft_printf("Error\nThe map must be walled\n");
 				// message(RED "Error\nThe map must be walled\n" ENDC, game);
 				x++;
@@ -86,10 +88,10 @@ void wall_control(t_game *game)
 	}
 }
 
-void game_control(t_game *game)
+void	game_control(t_game *game)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	j = 0;

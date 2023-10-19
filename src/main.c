@@ -6,7 +6,7 @@
 /*   By: mcatalan@student.42barcelona.com <mcata    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 16:32:26 by mcatalan          #+#    #+#             */
-/*   Updated: 2023/10/18 18:14:57 by mcatalan@st      ###   ########.fr       */
+/*   Updated: 2023/10/19 12:49:53 by mcatalan@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 // 	exit(0);
 // }
 
-int keyboard(int key_press, t_game *game)
+int	keyboard(int key_press, t_game *game)
 {
 	if (key_press == ESC)
 		destroy_window(game);
@@ -34,11 +34,6 @@ int keyboard(int key_press, t_game *game)
 	return (0);
 }
 
-void	helper(void)
-{
-	ft_printf("HOW TO PLAY SO_LONG:\n","\tW:\n","\tS\n","\tA\n", "\tD\n");
-}
-
 void	start(t_game *game)
 {
 	game->items = 0;
@@ -49,11 +44,12 @@ void	start(t_game *game)
 
 void	game(char **argv)
 {
-	t_game game;
-	
+	t_game	game;
+
 	size_window(&game, argv);
 	game.mlx = mlx_init();
-	game.win = mlx_new_window(game.mlx, game.size_x, game.size_y, "mcatalan SO_LONG");
+	game.win = mlx_new_window(game.mlx, game.size_x, game.size_y,
+			"mcatalan SO_LONG");
 	start(&game);
 	create_map(&game, argv);
 	mlx_hook(game.win, 17, 1L << 2, mlx_destroy_window, &game);
@@ -61,19 +57,11 @@ void	game(char **argv)
 	mlx_loop(game.mlx);
 }
 
-int checker(int argc, char **argv)
-{
-	(void)argc;
-	(void)**argv;
-	ft_printf("esto es checker");
-	return(0);
-}
-
-int so_long(int argc, char **argv)
+int	so_long(int argc, char **argv)
 {
 	checker(argc, argv);
 	game(argv);
-	return(0);
+	return (0);
 }
 
 int	main(int argc, char **argv)

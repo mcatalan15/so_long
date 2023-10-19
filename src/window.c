@@ -6,13 +6,13 @@
 /*   By: mcatalan@student.42barcelona.com <mcata    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 18:50:33 by mcatalan@st       #+#    #+#             */
-/*   Updated: 2023/10/18 18:30:58 by mcatalan@st      ###   ########.fr       */
+/*   Updated: 2023/10/19 12:46:19 by mcatalan@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./../includes/so_long.h"
 
-int destroy_window(t_game *game)
+int	destroy_window(t_game *game)
 {
 	mlx_destroy_window(game->mlx, game->win);
 	ft_printf("Game finished\n");
@@ -20,11 +20,11 @@ int destroy_window(t_game *game)
 	exit(0);
 }
 
-int ft_line_length(int fd)
+int	ft_line_length(int fd)
 {
-	char buffer[0];
-	int length;
-	int bytes;
+	char	buffer[0];
+	int		length;
+	int		bytes;
 
 	buffer[0] = '\0';
 	bytes = 1;
@@ -35,16 +35,16 @@ int ft_line_length(int fd)
 		if (buffer[0] != '\n')
 			length++;
 		else
-			break;
+			break ;
 	}
 	return (length);
 }
 
-int ft_count_lines(int fd)
+int	ft_count_lines(int fd)
 {
-	int linecount;
-	char buffer[0];
-	int bytes;
+	int		linecount;
+	char	buffer[0];
+	int		bytes;
 
 	buffer[0] = '\0';
 	linecount = 1;
@@ -52,17 +52,17 @@ int ft_count_lines(int fd)
 	{
 		bytes = read(fd, buffer, 1);
 		if (bytes < 1)
-			break;
+			break ;
 		if (buffer[0] == '\n')
 			linecount++;
 	}
 	return (linecount);
 }
 
-void size_window(t_game *data, char **argv)
+void	size_window(t_game *data, char **argv)
 {
-	int fd;
-	
+	int	fd;
+
 	fd = open(argv[1], O_RDONLY);
 	if (fd < 0)
 		ft_printf("File not found\n");

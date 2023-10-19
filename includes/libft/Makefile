@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+         #
+#    By: mcatalan@student.42barcelona.com <mcata    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/04 19:10:12 by mcatalan@st       #+#    #+#              #
-#    Updated: 2023/04/13 10:38:24 by mcatalan         ###   ########.fr        #
+#    Updated: 2023/10/19 11:03:16 by mcatalan@st      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,8 +61,7 @@ SRCS = 	ft_isalpha.c		\
 		ft_lstclear.c 		\
 		ft_lstiter.c 		\
 		ft_lstmap.c 		\
-
-SRCSB = ft_lstnew.c 		\
+		 ft_lstnew.c 		\
 		ft_lstadd_front.c	\
 		ft_lstsize.c		\
 		ft_lstlast.c		\
@@ -74,15 +73,11 @@ SRCSB = ft_lstnew.c 		\
 
 OBJS = $(SRCS:.c=.o)
 
-OBJSBONUS = $(SRCSB:.c=.o)
-
 INCLUDE = -I ./
 
 RM = rm -f
 
 DEPS = $(SRCS:.c=.d)
-
-DEPS_BONUS = $(SRCSB:.c=.d)
 
 %.o: %.c libft.h
 	${CC} ${CFLAGS} -MMD $(INCLUDE) -c $< -o $@
@@ -95,19 +90,12 @@ $(NAME): $(OBJS)
 
 -include $(DEPS)
 
-bonus: $(BONUS)
-
-$(BONUS) : $(OBJS) $(OBJSBONUS)
-
-	ar -rcs $(NAME) $(OBJS) $(OBJSBONUS)
-
--include $(DEPS_BONUS)
-
 clean:
-	$(RM) $(OBJS) $(OBJSBONUS) $(DEPS) $(DEPS_BONUS)
+	$(RM) $(OBJS) $(DEPS)
 
 fclean: clean
 	$(RM) $(NAME)
 
 re: fclean all
-.PHONY: all bonus clean fclean re
+
+.PHONY: all clean re

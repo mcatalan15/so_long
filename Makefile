@@ -6,74 +6,95 @@
 #    By: mcatalan@student.42barcelona.com <mcata    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/04 10:58:09 by mcatalan@st       #+#    #+#              #
-#    Updated: 2023/10/18 21:16:37 by mcatalan@st      ###   ########.fr        #
+#    Updated: 2023/10/19 13:01:28 by mcatalan@st      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-LIBFT_D	= includes/libft/
-LIBFT	= libft.a
+# LIBFT_D	= includes/libft/
+# LIBFT	= libft.a
 
-FT_PRINTF_D	=	includes/ft_printf/
-FT_PRINTF	=	ft_printf.a
+# FT_PRINTF_D	=	includes/ft_printf/
+# FT_PRINTF	=	ft_printf.a
+
+# CC = gcc
+
+# EXEC 	= 	so_long
+
+# SRCS		= 	src/main.c	\
+# 				src/controlls.c\
+# 				src/map.c	\
+# 				src/movements.c \
+# 				src/utils.c	\
+# 				src/window.c	\
+
+# OBJS 		= 	$(SRCS:.c=.o)
+
+# DEPS	=	$(SRCS:.c=.d)
+
+# INCLUDE = -I./
+# RM = rm -f
+# CFLAGS  =  -Wall -Wextra -Werror
+# MLXFALGS = -L includes/mlx/ -lmlx -framework OpenGL -framework AppKit
+
+# all:	
+# 	$(CC) $(CFLAGS) ./src/*.c -o $(EXEC)
+
+# makelibft:
+# 	@make --no-print-directory -C $(LIBFT_D)
+
+# makeftprintf:
+# 	@make --no-print-directory -C $(FT_PRINTF_D)
+
+# mlx:
+# 	@make	--no-print-directory -C	$(MLX_DIR) libmlx.a
+
+# all:	make$(EXEC)
+
+# %.o: %.c
+# 	$(CC) $(CFLAGS) -MMD $(INCLUDE) -c $< -o $@
+
+# $(NAME): $(OBJS) $(LIBFT_D)$(LIBFT) $(FT_PRINTF_D)$(FT_PRINTF) 
+# 	$(CC) $(CFLAGS) $(OBJS) -o $@ $(LIBFT_D)$(LIBFT) $(FT_PRINTF_D)$(FT_PRINTF)
+# -include $(DEPS)
 
 CC = gcc
+FLAGS = -o so_long -g -framework OpenGL -framework AppKit -L./includes/mlx -lmlx -L./includes/libft -L./includes/ft_printf
+RMFOR1337 = rm -rf a.out
+RM = @rm -rf
+BSRC = $(shell find bonus/mainfiles -name "bonus*.c") 
 
-NAME 	= 	so_long
+Y = "\033[33m"
+R = "\033[31m"
+G = "\033[32m"
+B = "\033[34m"
+X = "\033[0m"
+UP = "\033[A"
+CUT = "\033[K"
 
-SRCS		= 	src/main.c	\
-				src/controlls.c\
-				src/map.c	\
-				src/movements.c \
-				src/utils.c	\
-				src/window.c	\
+all:
+	$(CC) ./src/*.c $(FLAGS)
+	make -C ./src/
+	@echo $(G)ALERT [PLS go to directory bonus --- "cd ./bonus" and type for run -- "./so_long_bonus ../map/mapchose.ber"]$(G)
+	$(RMFOR1337)
 
-OBJ 		= 	$(SRCS:.c=.o)
-
-MLX_D		= includes/mlx/
-MLX_LIB 	= $(MLX_D)libmlx.a
-MLX_FLAGS 	= -L./includes/mlx -lmlx -framework OpenGL -framework AppKit
-
-CFLAGS  =  -Wall -Wextra -Werror
-
-INCLUDE = -I./
-
-$(LIBFT_D)$(LIBFT):
-	@make --no-print-directory -s -C $(LIBFT_D)
-
-$(FT_PRINTF_D)$(FT_PRINTF):
-	@make --no-print-directory -s -C $(FT_PRINTF_D)
-
+fclean:
+	$(RM)  so_long so_long.dSYM
+	$(RM) ./mainfiles/*.o ./mainfiles/mainfiles
+	$(RM) ./minilibx/*.o
+	$(RM) ./bonus/so_long_bonus
+	$(RM) ./bonus/so_long_bonus.dSYM
+	@echo $(B)Removed [TEMPORARY FILES]$(X)
+	@echo $(R)Removed [./mainfiles/*.o]$(X)
+	@echo $(R)Removed [./minilibx/*.o]$(X)
+	@echo $(R)Removed [REMOVED FINISH]$(X)
+	@echo $(R)Removed [REMOVED FINISH]$(X)
+	@echo $(R)Removed [REMOVED FINISH]$(X)
 %.o: %.c
-	$(CC) $(CFLAGS) -I $(HEADER) -MMD -Imlx -c $< -o $@
+	$(CC) -Wall -Wextra -Werror -Imlx -c $< -o $@
+$(NAME): $(OBJ)
+	$(CC) $(OBJ) -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME)
 
-
-$(NAME):	$(OBJ) $(LIBFT_D)$(LIBFT) $(FT_PRINTF_D)$(FT_PRINTF)
-	@$(CC) $(OBJ) -o $(NAME) $(MLX_FLAGS) $(MLX_LIB)
-
-all:		subsystems $(NAME)
-
-subsystems:
-	@make	--no-print-directory -C	$(MLX_DIR) libmlx.a
-
-libft:
-	@make --no-print-directory -C $(LIBFT_D) libft
-	
-ftprintf:
-	@make --no-print-directory -C $(FT_PRINTF_D) ftprintf
-
-libs:
-	subsystems printf libft
-
-clean:
-	rm -f $(OBJ) $(LIBFT_D)$(LIBFT) $(FT_PRINTF_D)$(FT_PRINTF) $(NAME)
-
-
-fclean:		clean
-			rm -f $(NAME)
-
-re:			fclean all
-
-# v:			re
-# 			-v
-
-.PHONY:		all clean fclean re subsystems libft ftprintf libs
+norm:
+	@echo $(B)[--NORMINETTE SUCCES %100 CLEAN CODE...]$(B)
+	norminette $(shell find ./mainfiles/ -name "*.c")
+.PHONY: re norm fclean clean all

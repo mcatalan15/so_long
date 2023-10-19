@@ -6,15 +6,15 @@
 /*   By: mcatalan@student.42barcelona.com <mcata    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 18:31:32 by mcatalan@st       #+#    #+#             */
-/*   Updated: 2023/10/18 18:42:55 by mcatalan@st      ###   ########.fr       */
+/*   Updated: 2023/10/19 12:53:10 by mcatalan@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./../includes/so_long.h"
 
-void map_destroy(t_game *game)
+void	map_destroy(t_game *game)
 {
-	int y;
+	int	y;
 
 	y = 0;
 	while (game->map[y])
@@ -24,11 +24,11 @@ void map_destroy(t_game *game)
 	}
 }
 
-void mount_map(t_game *game, int i)
+void	mount_map(t_game *game, int i)
 {
-	int j;
-	t_block map;
-	t_img img;
+	int		j;
+	t_block	map;
+	t_img	img;
 
 	img.wlx = *game;
 	j = 0;
@@ -45,10 +45,10 @@ void mount_map(t_game *game, int i)
 	}
 }
 
-void create_floor(t_game game, int b)
+void	create_floor(t_game game, int b)
 {
-	int j;
-	t_img image;
+	int		j;
+	t_img	image;
 
 	image.wlx = game;
 	j = 0;
@@ -74,10 +74,10 @@ void create_floor(t_game game, int b)
 	}
 }
 
-void create_map_length(char *area, t_game *game, int i)
+void	create_map_length(char *area, t_game *game, int i)
 {
-	int j;
-	t_img img;
+	int		j;
+	t_img	img;
 
 	img.wlx = *game;
 	j = 0;
@@ -85,7 +85,7 @@ void create_map_length(char *area, t_game *game, int i)
 	while (area[j])
 	{
 		if (area[j] == '\n')
-			break;
+			break ;
 		game->map[i][j] = area[j];
 		j++;
 	}
@@ -95,9 +95,9 @@ void create_map_length(char *area, t_game *game, int i)
 
 void	create_map(t_game *game, char **argv)
 {
-	int fd;
-	char *area;
-	int i;
+	int		fd;
+	char	*area;
+	int		i;
 
 	game->map = (char **)malloc(sizeof(char *) * (9999));
 	fd = open(argv[1], O_RDONLY);
@@ -106,7 +106,7 @@ void	create_map(t_game *game, char **argv)
 	{
 		area = get_next_line(fd);
 		if (area == NULL)
-			break;
+			break ;
 		create_map_length(area, game, i);
 		i++;
 	}
