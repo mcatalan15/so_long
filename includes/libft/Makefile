@@ -6,13 +6,11 @@
 #    By: mcatalan@student.42barcelona.com <mcata    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/04 19:10:12 by mcatalan@st       #+#    #+#              #
-#    Updated: 2023/10/19 11:03:16 by mcatalan@st      ###   ########.fr        #
+#    Updated: 2023/10/20 12:09:47 by mcatalan@st      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
-
-BONUS = .bonus
 
 CFLAGS = -Wall -Wextra -Werror
 
@@ -61,7 +59,7 @@ SRCS = 	ft_isalpha.c		\
 		ft_lstclear.c 		\
 		ft_lstiter.c 		\
 		ft_lstmap.c 		\
-		 ft_lstnew.c 		\
+		ft_lstnew.c 		\
 		ft_lstadd_front.c	\
 		ft_lstsize.c		\
 		ft_lstlast.c		\

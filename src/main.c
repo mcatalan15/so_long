@@ -6,71 +6,65 @@
 /*   By: mcatalan@student.42barcelona.com <mcata    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 16:32:26 by mcatalan          #+#    #+#             */
-/*   Updated: 2023/10/19 12:49:53 by mcatalan@st      ###   ########.fr       */
+/*   Updated: 2023/10/26 18:04:22 by mcatalan@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./../includes/so_long.h"
+#include "so_long.h"
 
-// void	messages(char *msg, t_game *game)
-// {
-// 	printf("%s", msg);
-// 	map_destroy(game);
-// 	exit(0);
-// }
-
-int	keyboard(int key_press, t_game *game)
+int check_map(char *filename)
 {
-	if (key_press == ESC)
+	(void)filename;
+	ft_printf("checking\n");
+	return (0);
+}
+
+void message(char *msg, t_game *game)
+{
+	ft_printf("%s", msg);
+	map_destroy(game);
+	exit(0);
+}
+
+int keyboard(int key_code, t_game *game)
+{
+	if (key_code == ESC)
 		destroy_window(game);
-	if (key_press == UP)
+	if (key_code == UP)
 		up(game);
-	if (key_press == RIGHT)
+	if (key_code == RIGHT)
 		right(game);
-	if (key_press == LEFT)
+	if (key_code == LEFT)
 		left(game);
-	if (key_press == DOWN)
+	if (key_code == DOWN)
 		down(game);
 	return (0);
 }
 
-void	start(t_game *game)
+void init_struct(t_game *game)
 {
-	game->items = 0;
-	game->exitpos = 0;
-	game->player.collectible = 0;
-	game->ppos = 0;
+	game->coincheck = 0;
+	game->exitcheck = 0;
+	game->player.coin = 0;
+	game->player.hareket = 0;
+	game->playercheck = 0;
 }
 
-void	game(char **argv)
+int main(int argc, char **argv)
 {
-	t_game	game;
+	t_game game;
 
-	size_window(&game, argv);
+	if (argc != 2)
+		message("Error\nJust ./so_long and the map.ber\n", &game);
+	if (check_map(argv[1]) == 1)
+		message("Error\n", &game);
+	ft_window_size(&game, argv);
 	game.mlx = mlx_init();
-	game.win = mlx_new_window(game.mlx, game.size_x, game.size_y,
-			"mcatalan SO_LONG");
-	start(&game);
-	create_map(&game, argv);
-	mlx_hook(game.win, 17, 1L << 2, mlx_destroy_window, &game);
-	mlx_key_hook(game.win, keyboard, &game);
+	game.window = mlx_new_window(game.mlx, game.size_x, game.size_y, "so_long mcatalan");
+	init_struct(&game);
+	create_map_line(&game, argv);
+	game_control(&game);
+	mlx_hook(game.window, 17, 1L << 2, destroy_window, &game);
+	mlx_key_hook(game.window, keyboard, &game);
 	mlx_loop(game.mlx);
-}
-
-int	so_long(int argc, char **argv)
-{
-	checker(argc, argv);
-	game(argv);
-	return (0);
-}
-
-int	main(int argc, char **argv)
-{
-	if (argc == 2)
-		so_long(argc, argv);
-	else if (argc != 2 || (argv[1][0] == '-' && argv[1][1] == 'h'))
-	{
-		helper();
-	}
-	return (0);
 }
