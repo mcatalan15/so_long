@@ -6,7 +6,7 @@
 /*   By: mcatalan@student.42barcelona.com <mcata    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 15:45:47 by mcatalan          #+#    #+#             */
-/*   Updated: 2023/10/26 18:09:48 by mcatalan@st      ###   ########.fr       */
+/*   Updated: 2023/10/29 19:32:10 by mcatalan@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdio.h>
+# include <stdbool.h>
 
 # define UP 13
 # define DOWN 1
@@ -31,7 +32,7 @@
 # define RIGHT 2
 # define ESC 53
 # define SIZE 48
-
+# define MAP_CHARS "10PCE\n"
 
 t_block set_block(char name);
 
@@ -62,5 +63,14 @@ void map_destroy(t_game *game);
 
 char *get_next_line(int fd);
 void messages(char *msg, t_game *game);
+
+void checker(t_game *game);
+
+//map2.c
+// void create_map_line_copy(t_game *game, char **argv);
+// void map_destroy_copy(t_game *game);
+
+void print_map(t_game *game);
+void print_map_copy(t_game *game);
 
 #endif

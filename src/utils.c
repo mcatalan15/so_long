@@ -6,7 +6,7 @@
 /*   By: mcatalan@student.42barcelona.com <mcata    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 20:29:44 by mcatalan@st       #+#    #+#             */
-/*   Updated: 2023/10/26 18:06:07 by mcatalan@st      ###   ########.fr       */
+/*   Updated: 2023/10/28 18:10:37 by mcatalan@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,11 @@ t_block set_block(char name)
 	t_block maps[6];
 	int i;
 
-	maps[0] = (t_block){"1", "./img/xpm/max.xpm"};
-	maps[1] = (t_block){"0", "./img/xpm/asphalt.xpm"};
-	maps[2] = (t_block){"C", "./img/xpm/pirelli_green.xpm"};
-	maps[3] = (t_block){"P", "./img/xpm/alonso.xpm"};
-	maps[4] = (t_block){"E", "./img/xpm/33.xpm"};
+	maps[0] = (t_block){"1", "./img/max.xpm"};
+	maps[1] = (t_block){"0", "./img/asphalt.xpm"};
+	maps[2] = (t_block){"C", "./img/pirelli_green.xpm"};
+	maps[3] = (t_block){"P", "./img/alonso.xpm"};
+	maps[4] = (t_block){"E", "./img/33.xpm"};
 	maps[5] = (t_block){NULL, NULL};
 	i = 0;
 	while (maps[i].name != NULL)
@@ -43,8 +43,6 @@ t_block set_block(char name)
 	}
 	return (maps[5]);
 }
-
-#include "so_long.h"
 
 int ft_line_length(int fd)
 {

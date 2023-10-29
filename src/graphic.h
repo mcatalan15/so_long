@@ -6,7 +6,7 @@
 /*   By: mcatalan@student.42barcelona.com <mcata    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 10:25:05 by mcatalan@st       #+#    #+#             */
-/*   Updated: 2023/10/26 18:08:52 by mcatalan@st      ###   ########.fr       */
+/*   Updated: 2023/10/29 13:34:02 by mcatalan@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ typedef struct s_game
 	void *mlx;
 	void *window;
 	char **map;
+	char **map_copy;
 	int coincheck;
 	int playercheck;
 	int exitcheck;

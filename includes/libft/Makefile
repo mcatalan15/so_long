@@ -6,7 +6,7 @@
 #    By: mcatalan@student.42barcelona.com <mcata    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/04 19:10:12 by mcatalan@st       #+#    #+#              #
-#    Updated: 2023/10/20 12:09:47 by mcatalan@st      ###   ########.fr        #
+#    Updated: 2023/10/29 15:37:57 by mcatalan@st      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -68,6 +68,7 @@ SRCS = 	ft_isalpha.c		\
 		ft_lstclear.c		\
 		ft_lstiter.c		\
 		ft_lstmap.c			\
+		ft_strcpy.c			\
 
 OBJS = $(SRCS:.c=.o)
 

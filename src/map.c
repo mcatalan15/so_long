@@ -6,7 +6,7 @@
 /*   By: mcatalan@student.42barcelona.com <mcata    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 18:31:32 by mcatalan@st       #+#    #+#             */
-/*   Updated: 2023/10/26 18:04:41 by mcatalan@st      ###   ########.fr       */
+/*   Updated: 2023/10/29 19:34:41 by mcatalan@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,20 @@ void map_destroy(t_game *game)
 	int y;
 
 	y = 0;
+	print_map(game);
+	ft_printf("\n");
 	while (game->map[y])
 	{
 		free(game->map[y]);
 		y++;
 	}
+	y = 0;
+	while (game->map_copy[y])
+	{
+		free(game->map_copy[y]);
+		y++;
+	}
+	print_map_copy(game);
 }
 
 void create_map(t_game *game, int i)
@@ -62,8 +71,8 @@ void create_floor(t_game game, int b)
 		while (game.map[b][j])
 		{
 			if (!(ft_strchr("1PCE0", game.map[b][j])))
-				message("Error\nOutside problem\n", &game);
-			image.relative_path = "./img/xpm/asphalt.xpm";
+				message("Error\nIncorrect characters\n", &game);
+			image.relative_path = "./img/asphalt.xpm";
 			put_image(image, (j * SIZE), (b * SIZE));
 			j++;
 		}
