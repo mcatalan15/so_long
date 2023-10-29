@@ -6,7 +6,7 @@
 /*   By: mcatalan@student.42barcelona.com <mcata    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 20:29:44 by mcatalan@st       #+#    #+#             */
-/*   Updated: 2023/10/28 18:10:37 by mcatalan@st      ###   ########.fr       */
+/*   Updated: 2023/10/29 20:54:18 by mcatalan@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void *put_image(t_image image, int x, int y)
 {
 	image.img = mlx_xpm_file_to_image(image.wlx.mlx,
-									  image.relative_path, &image.img_width, &image.img_height);
+									  image.relative_path, &image.img_w, &image.img_h);
 	mlx_put_image_to_window(image.wlx.mlx, image.wlx.window, image.img, x, y);
 	return (image.img);
 }

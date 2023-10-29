@@ -6,7 +6,7 @@
 /*   By: mcatalan@student.42barcelona.com <mcata    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 20:37:30 by mcatalan@st       #+#    #+#             */
-/*   Updated: 2023/10/29 10:59:46 by mcatalan@st      ###   ########.fr       */
+/*   Updated: 2023/10/29 20:53:46 by mcatalan@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,18 +45,18 @@ void map_control(t_game *game)
 		while (game->map[i][j])
 		{
 			if (game->map[i][j] == 'E')
-				game->exitcheck++;
+				game->exitpos++;
 			j++;
 		}
 		i++;
 	}
-	if (game->coincheck == 0)
+	if (game->items == 0)
 		message("Error\nNo items to collect on the map!\n", game);
-	if (game->exitcheck == 0)
+	if (game->exitpos == 0)
 		message("Error\nNo exit door on the map!\n", game);
-	if (game->playercheck < 1)
+	if (game->ppos < 1)
 		message("Error\nThere's no player on the map!\n", game);
-	if (game->playercheck > 1)
+	if (game->ppos > 1)
 		message("Error\nThere's more than 1 player on the map!\n", game);
 }
 
@@ -73,12 +73,12 @@ void game_control(t_game *game)
 		while (game->map[i][j])
 		{
 			if (game->map[i][j] == 'C')
-				game->coincheck++;
+				game->items++;
 			if (game->map[i][j] == 'P')
 			{
 				game->player.x = j * SIZE;
 				game->player.y = i * SIZE;
-				game->playercheck++;
+				game->ppos++;
 			}
 			j++;
 		}
@@ -99,7 +99,7 @@ int move_check(t_game *game, int i, int j)
 	}
 	else if (game->map[i][j] == 'E')
 	{
-		if (game->player.coin != game->coincheck)
+		if (game->player.coin != game->items)
 		{
 			printf("There are items left to be collected!\n");
 			return (1);
