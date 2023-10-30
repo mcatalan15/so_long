@@ -6,7 +6,7 @@
 /*   By: mcatalan@student.42barcelona.com <mcata    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 18:31:32 by mcatalan@st       #+#    #+#             */
-/*   Updated: 2023/10/29 19:34:41 by mcatalan@st      ###   ########.fr       */
+/*   Updated: 2023/10/30 10:11:09 by mcatalan@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,26 @@
 
 void map_destroy(t_game *game)
 {
-	int y;
+	int i;
+	int rows = game->size_y / 48;
+	int cols = game->size_x / 48;
 
-	y = 0;
+	i = 0;
 	print_map(game);
 	ft_printf("\n");
-	while (game->map[y])
+	while (game->map[i])
 	{
-		free(game->map[y]);
-		y++;
+		free(game->map[i]);
+		i++;
 	}
-	y = 0;
-	while (game->map_copy[y])
+	for (int i = 0; i < rows; i++)
 	{
-		free(game->map_copy[y]);
-		y++;
+		for (int j = 0; j < cols; j++)
+		{
+			printf("%c", game->map[i][j]);
+		}
+		printf("\n");
 	}
-	print_map_copy(game);
 }
 
 void create_map(t_game *game, int i)

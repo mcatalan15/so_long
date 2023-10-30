@@ -6,7 +6,7 @@
 /*   By: mcatalan@student.42barcelona.com <mcata    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 16:32:26 by mcatalan          #+#    #+#             */
-/*   Updated: 2023/10/29 20:53:46 by mcatalan@st      ###   ########.fr       */
+/*   Updated: 2023/10/30 10:06:08 by mcatalan@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,8 @@ int main(int argc, char **argv)
 	init_struct(&game);
 	create_map_line(&game, argv);
 	game_control(&game);
-	ft_printf("print map copy\n");
-	// checker(&game);
+	// ft_printf("print map copy\n");
+	checker(&game);
 	mlx_hook(game.window, 17, 1L << 2, destroy_window, &game);
 	mlx_key_hook(game.window, keyboard, &game);
 	mlx_loop(game.mlx);

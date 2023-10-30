@@ -6,7 +6,7 @@
 /*   By: mcatalan@student.42barcelona.com <mcata    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 12:49:25 by mcatalan@st       #+#    #+#             */
-/*   Updated: 2023/10/29 20:41:39 by mcatalan@st      ###   ########.fr       */
+/*   Updated: 2023/10/30 10:05:35 by mcatalan@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,10 +126,10 @@ void	checker(t_game *game)
 	size_t size_x = game->size_x/48;
 	
 	copy_map(game);
-	// ft_printf("print map\n");
-	// print_map(game);
-	// print_map_copy(game);
-	// ft_printf("print map copy\n");
+	ft_printf("print map\n");
+	print_map(game);
+	ft_printf("print map copy\n");
+	print_map_copy(game);
 	// game->map_copy[4][4] = 'Z';
 	// ft_printf("print map\n");
 	// print_map(game);
