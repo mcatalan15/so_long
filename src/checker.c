@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: mcatalan@student.42barcelona.com <mcata    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 12:49:25 by mcatalan@st       #+#    #+#             */
-/*   Updated: 2023/10/30 13:03:23 by mcatalan         ###   ########.fr       */
+/*   Updated: 2023/10/30 21:15:26 by mcatalan@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,22 +78,22 @@ void print_map(t_game *game)
 
 bool is_valid_move(t_game *game, int row, int col, int numRows, int numCols)
 {
-	if (row >= 0 && row < numRows && col >= 0 && col < numCols)
-		return (game->map_copy[row][col] == '0' || game->map_copy[row][col] == 'C');
-	return false;
+	if ((row >= 0 && row < numRows && col >= 0 && col < numCols)
+	&& (game->map_copy[row][col] == 'C' || game->map_copy[row][col] == 'E' || game->map_copy[row][col] == '0'))
+	{
+		if (game->map_copy[row][col] == 'C')
+			game->num_coins_find++;
+		else if (game->map_copy[row][col] == 'E')
+			game->find_end = true;
+		return (true);
+	}
+	return (false);
 }
 
 bool find_path(t_game *game, int row, int col)
 {
 	int numRows = game->size_y / 48;
 	int numCols = game->size_x / 48;
-	// ft_printf("find_path\n");
-	// print_map(game);
-	if (game->map_copy[row][col] == 'E')
-	{
-		ft_printf("hay E\n");
-		return true;
-	}
 
 	game->map_copy[row][col] = '.';
 
@@ -116,7 +116,6 @@ bool find_path(t_game *game, int row, int col)
 
 	return false;
 }
-
 
 void	checker(t_game *game)
 {
@@ -146,12 +145,21 @@ void	checker(t_game *game)
 	}
 	// ft_printf("print map\n");
 	// ft_printf("%zu\n%zu\n",start_row,start_col);
-	if (find_path(game, start_row, start_col))
-		message("It's not possible to reach the exit 'E' from 'P'.\n", game);
+	find_path(game, start_row, start_col);
+	printf("Final encontrado: %d\nTotal items: %d\nTotal numCoins_find: %d\n", game->find_end, game->items, game->num_coins_find);
+
+	if (game->find_end  && game->items == game->num_coins_find)
+		printf("EL mapa es solucionalble\n");
 	else
-		ft_printf("hay camino\n");
-	ft_printf("print map copy\n");
-	print_map_copy(game);
-	ft_printf("print map\n");
-	print_map(game);
+		message("mapa no solucionable\n", game);
+
+
+	
+		//message("It's not possible to reach the exit 'E' from 'P'.\n", game);
+	//else
+	//	ft_printf("hay camino\n");
+	// ft_printf("print map copy\n");
+	// print_map_copy(game);
+	// ft_printf("print map\n");
+	// print_map(game);
 }

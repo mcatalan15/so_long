@@ -6,9 +6,11 @@
 /*   By: mcatalan@student.42barcelona.com <mcata    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 10:25:05 by mcatalan@st       #+#    #+#             */
-/*   Updated: 2023/10/29 20:58:55 by mcatalan@st      ###   ########.fr       */
+/*   Updated: 2023/10/30 20:55:24 by mcatalan@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include <stdbool.h>
 
 #ifndef GRAPHIC_H
 # define GRAPHIC_H
@@ -33,6 +35,8 @@ typedef struct s_game
 	int exitpos;
 	size_t size_x;
 	int size_y;
+	bool find_end;
+	int num_coins_find;
 	t_player player;
 } t_game;
 
