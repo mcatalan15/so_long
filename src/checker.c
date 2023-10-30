@@ -6,7 +6,7 @@
 /*   By: mcatalan@student.42barcelona.com <mcata    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 12:49:25 by mcatalan@st       #+#    #+#             */
-/*   Updated: 2023/10/30 10:05:35 by mcatalan@st      ###   ########.fr       */
+/*   Updated: 2023/10/30 11:27:58 by mcatalan@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,47 +76,68 @@ void print_map(t_game *game)
 	}
 }
 
-bool is_valid_move(t_game *game, int row, int col, int numRows, int numCols)
-{
-	if (row >= 0 && row < numRows && col >= 0 && col < numCols)
-	{
-		return (game->map_copy[row][col] == '0' || game->map_copy[row][col] == 'C');
-	}
-	return false;
-}
+// bool is_valid_move(t_game *game, int row, int col, int numRows, int numCols)
+// {
+// 	if (row >= 0 && row < numRows && col >= 0 && col < numCols)
+// 		return (game->map_copy[row][col] == '0' || game->map_copy[row][col] == 'C');
+// 	return false;
+// }
 
-bool find_path(t_game *game, int row, int col)
+// bool find_path(t_game *game, int row, int col)
+// {
+// 	int numRows = game->size_y / 48;
+// 	int numCols = game->size_x / 48;
+// 	ft_printf("find_path\n");
+// 	// print_map(game);
+// 	if (game->map_copy[row][col] == 'E')
+// 	{
+// 		ft_printf("hay E\n");
+// 		return true;
+// 	}
+
+// 	game->map_copy[row][col] = '.';
+
+// 	int moves[4][2] = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
+
+// 	for (int i = 0; i < 4; i++)
+// 	{
+// 		int new_row = row + moves[i][0];
+// 		int new_col = col + moves[i][1];
+
+// 		if (is_valid_move(game, new_row, new_col, numRows, numCols))
+// 		{
+// 			if (find_path(game, new_row, new_col))
+// 			{
+// 				return true;
+// 			}
+// 		}
+// 	}
+// 	game->map_copy[row][col] = 'X';
+	
+// 	return false;
+// }
+
+bool	find_path(t_game *game, int row, int col)
 {
 	int numRows = game->size_y / 48;
 	int numCols = game->size_x / 48;
-	// ft_printf("print map\n");
-	// print_map(game);
-	if (game->map_copy[row][col] == 'E')
+	// int moves[4][2] = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
+	
+	for (row < numRows; row++)
 	{
-		ft_printf("hay E\n");
-		return true;
-	}
-
-	game->map_copy[row][col] = '.';
-
-	int moves[4][2] = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
-
-	for (int i = 0; i < 4; i++)
-	{
-		int new_row = row + moves[i][0];
-		int new_col = col + moves[i][1];
-
-		if (is_valid_move(game, new_row, new_col, numRows, numCols))
+		for (col < numCols; col++)
 		{
-			if (find_path(game, new_row, new_col))
-			{
+			if (game->map_copy[row][col] == 'E' || game->map_copy[row][col - 1] == 'E' || game->map_copy[row][col + 1] == 'E' || game->map_copy[row - 1][col] == 'E' || game->map_copy[row + 1][col] == 'E')
 				return true;
+			else if (game->map_copy[row][col] == 'C')
+			{
+				find_path(game, row, col)
 			}
+			
+
+			// printf("map[%d][%d] = %d\n", i, j, game->map_copy[i][j]);
 		}
 	}
-	game->map_copy[row][col] = 'X';
-	
-	return false;
 }
 
 void	checker(t_game *game)
@@ -130,11 +151,7 @@ void	checker(t_game *game)
 	print_map(game);
 	ft_printf("print map copy\n");
 	print_map_copy(game);
-	// game->map_copy[4][4] = 'Z';
-	// ft_printf("print map\n");
-	// print_map(game);
-	// ft_printf("print map copy\n");
-	// print_map_copy(game);
+
 
 	for (size_t i = 0; i < size_y; i++)
 	{
@@ -148,7 +165,7 @@ void	checker(t_game *game)
 			}
 		}
 	}
-	ft_printf("print map\n");
+	// ft_printf("print map\n");
 	// ft_printf("%zu\n%zu\n",start_row,start_col);
 	if (find_path(game, start_row, start_col))
 		message("It's not possible to reach the exit 'E' from 'P'.\n", game);
