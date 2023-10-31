@@ -6,7 +6,7 @@
 /*   By: mcatalan@student.42barcelona.com <mcata    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 11:43:10 by mcatalan@st       #+#    #+#             */
-/*   Updated: 2023/10/30 21:20:04 by mcatalan@st      ###   ########.fr       */
+/*   Updated: 2023/10/31 12:12:47 by mcatalan@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 #include "so_long.h"
 
-void update(t_game *game, int x, int y)
+void	update(t_game *game, int x, int y)
 {
-	t_image image;
+	t_image	image;
 
 	image.relative_path = "./img/asphalt.xpm";
 	image.wlx = *game;
@@ -24,11 +24,11 @@ void update(t_game *game, int x, int y)
 	put_image(image, x, y);
 }
 
-void right(t_game *game)
+void	right(t_game *game)
 {
-	int i;
-	int j;
-	t_image image;
+	t_image	image;
+	int		i;
+	int		j;
 
 	image.relative_path = "./img/alonso.xpm";
 	image.wlx = *game;
@@ -45,11 +45,11 @@ void right(t_game *game)
 	}
 }
 
-void left(t_game *game)
+void	left(t_game *game)
 {
-	int i;
-	int j;
-	t_image image;
+	t_image	image;
+	int		i;
+	int		j;
 
 	image.relative_path = "./img/alonso_left.xpm";
 	image.wlx = *game;
@@ -66,11 +66,11 @@ void left(t_game *game)
 	}
 }
 
-void up(t_game *game)
+void	up(t_game *game)
 {
-	int i;
-	int j;
-	t_image image;
+	t_image	image;
+	int		i;
+	int		j;
 
 	image.relative_path = "./img/alonso_left.xpm";
 	image.wlx = *game;
@@ -87,11 +87,11 @@ void up(t_game *game)
 	}
 }
 
-void down(t_game *game)
+void	down(t_game *game)
 {
-	int i;
-	int j;
-	t_image image;
+	t_image	image;
+	int		i;
+	int		j;
 
 	image.relative_path = "./img/alonso_down.xpm";
 	image.wlx = *game;

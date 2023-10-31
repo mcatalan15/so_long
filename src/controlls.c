@@ -6,16 +6,16 @@
 /*   By: mcatalan@student.42barcelona.com <mcata    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 20:37:30 by mcatalan@st       #+#    #+#             */
-/*   Updated: 2023/10/29 20:53:46 by mcatalan@st      ###   ########.fr       */
+/*   Updated: 2023/10/31 11:29:04 by mcatalan@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void wall_control(t_game *game)
+void	wall_control(t_game *game)
 {
-	size_t x;
-	int y;
+	size_t	x;
+	int		y;
 
 	y = 0;
 	while (y < (game->size_y / SIZE))
@@ -25,7 +25,9 @@ void wall_control(t_game *game)
 		{
 			if ((y == 0 || x == 0) && game->map[y][x] != '1')
 				message("Error\nThe map must be walled\n", game);
-			else if ((y == (game->size_y / SIZE - 1) || x == (game->size_x / SIZE - 1)) && game->map[y][x] != '1')
+			else if ((y == (game->size_y / SIZE - 1)
+					|| x == (game->size_x / SIZE - 1))
+				&& game->map[y][x] != '1')
 				message("Error\nThe map must be walled!\n", game);
 			x++;
 		}
@@ -33,10 +35,10 @@ void wall_control(t_game *game)
 	}
 }
 
-void map_control(t_game *game)
+void	map_control(t_game *game)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	while (game->map[i])
@@ -60,10 +62,10 @@ void map_control(t_game *game)
 		message("Error\nThere's more than 1 player on the map!\n", game);
 }
 
-void game_control(t_game *game)
+void	game_control(t_game *game)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	j = 0;
@@ -88,7 +90,7 @@ void game_control(t_game *game)
 	wall_control(game);
 }
 
-int move_check(t_game *game, int i, int j)
+int	move_check(t_game *game, int i, int j)
 {
 	if (game->map[i][j] == '1')
 		return (1);

@@ -6,17 +6,19 @@
 /*   By: mcatalan@student.42barcelona.com <mcata    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 12:49:25 by mcatalan@st       #+#    #+#             */
-/*   Updated: 2023/10/30 21:15:26 by mcatalan@st      ###   ########.fr       */
+/*   Updated: 2023/10/31 11:27:15 by mcatalan@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int copy_map(t_game *game)
+int	copy_map(t_game *game)
 {
-	int rows = game->size_y / 48;
-	int cols = game->size_x / 48;
+	int	rows;
+	int	cols;
 
+	cols = game->size_x / 48;
+	rows = game->size_y / 48;
 	if (game->map_copy != NULL)
 	{
 		for (int i = 0; i < rows; i++)
@@ -25,7 +27,7 @@ int copy_map(t_game *game)
 	}
 	game->map_copy = (char **)malloc(rows * sizeof(char *));
 	if (game->map_copy == NULL)
-		return 0;
+		return (0);
 
 	for (int i = 0; i < rows; i++)
 	{
@@ -43,43 +45,20 @@ int copy_map(t_game *game)
 		ft_strcpy((game->map_copy)[i], game->map[i]);
 	}
 
-	return 1;
+	return (1);
 }
 
-void print_map_copy(t_game *game)
+bool	is_valid_move(t_game *game, int row, int col)
 {
-	int rows = game->size_y / 48;
-	int cols = game->size_x / 48;
+	int	numrows;
+	int	numcols;
 
-	for (int i = 0; i < rows; i++)
-	{
-		for (int j = 0; j < cols; j++)
-		{
-			printf("%c", game->map_copy[i][j]);
-		}
-		printf("\n");
-	}
-}
+	numcols = game->size_x / 48;
+	numrows = game->size_y / 48;
 
-void print_map(t_game *game)
-{
-	int rows = game->size_y / 48;
-	int cols = game->size_x / 48;
-
-	for (int i = 0; i < rows; i++)
-	{
-		for (int j = 0; j < cols; j++)
-		{
-			printf("%c", game->map[i][j]);
-		}
-		printf("\n");
-	}
-}
-
-bool is_valid_move(t_game *game, int row, int col, int numRows, int numCols)
-{
-	if ((row >= 0 && row < numRows && col >= 0 && col < numCols)
-	&& (game->map_copy[row][col] == 'C' || game->map_copy[row][col] == 'E' || game->map_copy[row][col] == '0'))
+	if ((row >= 0 && row < numrows && col >= 0 && col < numcols)
+		&& (game->map_copy[row][col] == 'C' || game->map_copy[row][col] == 'E'
+	|| game->map_copy[row][col] == '0'))
 	{
 		if (game->map_copy[row][col] == 'C')
 			game->num_coins_find++;
@@ -90,10 +69,8 @@ bool is_valid_move(t_game *game, int row, int col, int numRows, int numCols)
 	return (false);
 }
 
-bool find_path(t_game *game, int row, int col)
+bool	find_path(t_game *game, int row, int col)
 {
-	int numRows = game->size_y / 48;
-	int numCols = game->size_x / 48;
 
 	game->map_copy[row][col] = '.';
 
@@ -104,33 +81,29 @@ bool find_path(t_game *game, int row, int col)
 		int new_row = row + moves[i][0];
 		int new_col = col + moves[i][1];
 
-		if (is_valid_move(game, new_row, new_col, numRows, numCols))
+		if (is_valid_move(game, new_row, new_col))
 		{
 			if (find_path(game, new_row, new_col))
 			{
-				return true;
+				return (true);
 			}
 		}
 	}
 	game->map_copy[row][col] = 'X';
 
-	return false;
+	return (false);
 }
 
 void	checker(t_game *game)
 {
-	size_t start_row, start_col;
-	size_t size_y = (game->size_y / 48);//-1
-	size_t size_x = game->size_x/48;
+	size_t	start_row;
+	size_t	start_col;
+	size_t	size_y;
+	size_t	size_x;
 
+	size_x = game->size_x / 48;
+	size_y = (game->size_y / 48);
 	copy_map(game);
-	
-	// ft_printf("print map\n");
-	// print_map(game);
-	// ft_printf("print map copy\n");
-	// print_map_copy(game);
-
-
 	for (size_t i = 0; i < size_y; i++)
 	{
 		for (size_t j = 0; j < size_x; j++)
@@ -139,27 +112,14 @@ void	checker(t_game *game)
 			{
 				start_row = i;
 				start_col = j;
-				break;
+				break ;
 			}
 		}
 	}
-	// ft_printf("print map\n");
-	// ft_printf("%zu\n%zu\n",start_row,start_col);
 	find_path(game, start_row, start_col);
-	printf("Final encontrado: %d\nTotal items: %d\nTotal numCoins_find: %d\n", game->find_end, game->items, game->num_coins_find);
-
-	if (game->find_end  && game->items == game->num_coins_find)
+	// printf("Final encontrado: %d\nTotal items: %d\nTotal numCoins_find: %d\n", game->find_end, game->items, game->num_coins_find);
+	if (game->find_end && game->items == game->num_coins_find)
 		printf("EL mapa es solucionalble\n");
 	else
-		message("mapa no solucionable\n", game);
-
-
-	
-		//message("It's not possible to reach the exit 'E' from 'P'.\n", game);
-	//else
-	//	ft_printf("hay camino\n");
-	// ft_printf("print map copy\n");
-	// print_map_copy(game);
-	// ft_printf("print map\n");
-	// print_map(game);
+		message("The map has no solution\n", game);
 }

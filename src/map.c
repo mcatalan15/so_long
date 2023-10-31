@@ -6,18 +6,20 @@
 /*   By: mcatalan@student.42barcelona.com <mcata    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 18:31:32 by mcatalan@st       #+#    #+#             */
-/*   Updated: 2023/10/30 10:47:22 by mcatalan@st      ###   ########.fr       */
+/*   Updated: 2023/10/31 13:05:02 by mcatalan@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void map_destroy(t_game *game)
+void	map_destroy(t_game *game)
 {
-	int i;
-	int rows = game->size_y / 48;
-	int cols = game->size_x / 48;
+	int	i;
+	int	rows;
+	int	cols;
 
+	rows = game->size_y / 48;
+	cols = game->size_x / 48;
 	i = 0;
 	print_map(game);
 	ft_printf("\n");
@@ -36,11 +38,11 @@ void map_destroy(t_game *game)
 	}
 }
 
-void create_map(t_game *game, int i)
+void	create_map(t_game *game, int i)
 {
-	int j;
-	t_block map;
-	t_image image;
+	t_block	map;
+	t_image	image;
+	int		j;
 
 	image.wlx = *game;
 	j = 0;
@@ -57,10 +59,10 @@ void create_map(t_game *game, int i)
 	}
 }
 
-void create_floor(t_game game, int b)
+void	create_floor(t_game game, int b)
 {
-	int j;
-	t_image image;
+	t_image	image;
+	int		j;
 
 	image.wlx = game;
 	j = 0;
@@ -83,10 +85,10 @@ void create_floor(t_game game, int b)
 	}
 }
 
-void create_map_length(char *area, t_game *game, int i)
+void	create_map_length(char *area, t_game *game, int i)
 {
-	int j;
-	t_image image;
+	t_image	image;
+	int		j;
 
 	image.wlx = *game;
 	j = 0;
@@ -94,7 +96,7 @@ void create_map_length(char *area, t_game *game, int i)
 	while (area[j])
 	{
 		if (area[j] == '\n')
-			break;
+			break ;
 		game->map[i][j] = area[j];
 		j++;
 	}
@@ -102,21 +104,30 @@ void create_map_length(char *area, t_game *game, int i)
 	create_map(game, i);
 }
 
-void create_map_line(t_game *game, char **argv)
+void	create_map_line(t_game *game, char **argv)
 {
-	int fd;
-	char *area;
-	int i;
+	int		fd;
+	char	*area;
+	int		i;
 
 	game->map = (char **)malloc(sizeof(char *) * (9999));
 	fd = open(argv[1], O_RDONLY);
 	i = 0;
 	while (i <= game->size_y / 48)
 	{
+		// while ((area = get_next_line(fd)) != NULL)
+		// {
+		// 	if (area == NULL)
+		// 	{
+		// 		break ;
+		// 	}
+		// 	create_map_length(area, game, )
+		// }
 		area = get_next_line(fd);
 		if (area == NULL)
-			break;
+			break ;
 		create_map_length(area, game, i);
+		myfree(area);
 		i++;
 	}
 	close(fd);

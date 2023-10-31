@@ -6,13 +6,13 @@
 /*   By: mcatalan@student.42barcelona.com <mcata    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 18:50:33 by mcatalan@st       #+#    #+#             */
-/*   Updated: 2023/10/29 13:39:48 by mcatalan@st      ###   ########.fr       */
+/*   Updated: 2023/10/31 12:13:17 by mcatalan@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int destroy_window(t_game *game)
+int	destroy_window(t_game *game)
 {
 	mlx_destroy_window(game->mlx, game->window);
 	message("Game closed\n", game);
@@ -20,9 +20,9 @@ int destroy_window(t_game *game)
 	exit(0);
 }
 
-void ft_window_size(t_game *data, char **argv)
+void	ft_window_size(t_game *data, char **argv)
 {
-	int fd;
+	int	fd;
 
 	fd = open(argv[1], O_RDONLY);
 	if (fd < 0)

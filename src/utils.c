@@ -6,49 +6,25 @@
 /*   By: mcatalan@student.42barcelona.com <mcata    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 20:29:44 by mcatalan@st       #+#    #+#             */
-/*   Updated: 2023/10/29 20:54:18 by mcatalan@st      ###   ########.fr       */
+/*   Updated: 2023/10/31 12:48:09 by mcatalan@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void *put_image(t_image image, int x, int y)
+void	*put_image(t_image image, int x, int y)
 {
 	image.img = mlx_xpm_file_to_image(image.wlx.mlx,
-									  image.relative_path, &image.img_w, &image.img_h);
+			image.relative_path, &image.img_w, &image.img_h);
 	mlx_put_image_to_window(image.wlx.mlx, image.wlx.window, image.img, x, y);
 	return (image.img);
 }
 
-t_block set_block(char name)
+int	ft_line_length(int fd)
 {
-	t_block maps[6];
-	int i;
-
-	maps[0] = (t_block){"1", "./img/max.xpm"};
-	maps[1] = (t_block){"0", "./img/asphalt.xpm"};
-	maps[2] = (t_block){"C", "./img/pirelli_green.xpm"};
-	maps[3] = (t_block){"P", "./img/alonso.xpm"};
-	maps[4] = (t_block){"E", "./img/33.xpm"};
-	maps[5] = (t_block){NULL, NULL};
-	i = 0;
-	while (maps[i].name != NULL)
-	{
-		if (maps[i].name[0] == name)
-		{
-			return (maps[i]);
-			break;
-		}
-		i++;
-	}
-	return (maps[5]);
-}
-
-int ft_line_length(int fd)
-{
-	char buffer[0];
-	int length;
-	int bytes;
+	char	buffer[0];
+	int		length;
+	int		bytes;
 
 	buffer[0] = '\0';
 	bytes = 1;
@@ -59,16 +35,16 @@ int ft_line_length(int fd)
 		if (buffer[0] != '\n')
 			length++;
 		else
-			break;
+			break ;
 	}
 	return (length);
 }
 
-int ft_count_lines(int fd)
+int	ft_count_lines(int fd)
 {
-	int linecount;
-	char buffer[0];
-	int bytes;
+	int		linecount;
+	char	buffer[0];
+	int		bytes;
 
 	buffer[0] = '\0';
 	linecount = 1;
@@ -76,40 +52,40 @@ int ft_count_lines(int fd)
 	{
 		bytes = read(fd, buffer, 1);
 		if (bytes < 1)
-			break;
+			break ;
 		if (buffer[0] == '\n')
 			linecount++;
 	}
 	return (linecount);
 }
 
-void *myfree(void *str)
+void	*myfree(void *str)
 {
 	free(str);
 	return (NULL);
 }
 
-char *get_next_line(int fd)
+char	*get_next_line(int fd)
 {
-	char buffer;
-	char *line;
-	int rd_byte;
-	int i;
+	char	buffer;
+	char	*line;
+	int		rd_byte;
+	int		i;
 
 	rd_byte = 1;
 	i = 0;
 	line = (char *)malloc(sizeof(char) * 9999);
 	buffer = 0;
-	if (fd < 0)
+	if (fd < 0 || !line)
 		return (NULL);
 	while (rd_byte > 0)
 	{
 		rd_byte = read(fd, &buffer, 1);
 		if (rd_byte <= 0)
-			break;
+			break ;
 		line[i++] = buffer;
 		if (buffer == '\n')
-			break;
+			break ;
 	}
 	line[i] = '\0';
 	if (!*line)
