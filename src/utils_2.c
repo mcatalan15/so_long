@@ -6,7 +6,7 @@
 /*   By: mcatalan@student.42barcelona.com <mcata    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 20:29:44 by mcatalan@st       #+#    #+#             */
-/*   Updated: 2023/10/31 11:26:44 by mcatalan@st      ###   ########.fr       */
+/*   Updated: 2023/11/02 11:39:58 by mcatalan@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,18 +32,12 @@ void	print_map_copy(t_game *game)
 
 void	print_map(t_game *game)
 {
-	int	rows;
-	int	cols;
+	int i = 0;
 
-	cols = game->size_x / 48;
-	rows = game->size_y / 48;
-	for (int i = 0; i < rows; i++)
+	while (game->map[i])
 	{
-		for (int j = 0; j < cols; j++)
-		{
-			printf("%c", game->map[i][j]);
-		}
-		printf("\n");
+		printf("%s\n", game->map[i]);
+		i++;
 	}
 }
 

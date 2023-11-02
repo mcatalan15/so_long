@@ -6,7 +6,7 @@
 /*   By: mcatalan@student.42barcelona.com <mcata    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 12:49:25 by mcatalan@st       #+#    #+#             */
-/*   Updated: 2023/10/31 11:27:15 by mcatalan@st      ###   ########.fr       */
+/*   Updated: 2023/11/02 09:31:05 by mcatalan@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,9 +117,9 @@ void	checker(t_game *game)
 		}
 	}
 	find_path(game, start_row, start_col);
-	// printf("Final encontrado: %d\nTotal items: %d\nTotal numCoins_find: %d\n", game->find_end, game->items, game->num_coins_find);
 	if (game->find_end && game->items == game->num_coins_find)
 		printf("EL mapa es solucionalble\n");
 	else
 		message("The map has no solution\n", game);
+	
 }

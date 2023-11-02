@@ -6,7 +6,7 @@
 /*   By: mcatalan@student.42barcelona.com <mcata    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 16:32:26 by mcatalan          #+#    #+#             */
-/*   Updated: 2023/10/31 12:17:00 by mcatalan@st      ###   ########.fr       */
+/*   Updated: 2023/11/02 10:54:51 by mcatalan@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ int	keyboard(int key_code, t_game *game)
 void	init_struct(t_game *game)
 {
 	game->items = 0;
+	game->map = NULL;
 	game->exitpos = 0;
 	game->player.coin = 0;
 	game->player.hareket = 0;
@@ -51,10 +52,12 @@ int	main(int argc, char **argv)
 	t_game	game;
 
 	if (argc != 2)
-		message("Error\nJust ./so_long. Add the map wit the .ber extension\n",
-			&game);
-	ft_window_size(&game, argv);
+	{
+		ft_printf("Error\nJust ./so_long. Add the map wit the .ber extension\n");
+		exit (0);
+	}
 	game.mlx = mlx_init();
+	ft_window_size(&game, argv);
 	game.window = mlx_new_window(game.mlx, game.size_x, game.size_y,
 			"mcatalan so_long");
 	init_struct(&game);

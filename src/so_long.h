@@ -6,7 +6,7 @@
 /*   By: mcatalan@student.42barcelona.com <mcata    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 15:45:47 by mcatalan          #+#    #+#             */
-/*   Updated: 2023/10/31 12:28:31 by mcatalan@st      ###   ########.fr       */
+/*   Updated: 2023/11/01 18:43:19 by mcatalan@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	right(t_game *game);
 void	up(t_game *game);
 void	down(t_game *game);
 void	left(t_game *game);
-void	map_destroy(t_game *game);
+int		map_destroy(t_game *game);
 
 char	*get_next_line(int fd);
 void	messages(char *msg, t_game *game);
