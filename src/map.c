@@ -6,7 +6,7 @@
 /*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 18:31:32 by mcatalan@st       #+#    #+#             */
-/*   Updated: 2023/11/03 11:18:21 by mcatalan         ###   ########.fr       */
+/*   Updated: 2023/11/03 11:24:16 by mcatalan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,8 @@ void	create_floor(t_game game, int b)
 
 	image.wlx = game;
 	j = 0;
-	if (game.map[(game.size_y / 48)] && game.map[(game.size_y / 48)][0] != '\0')
+	if (game.map[(game.size_y / 48)]
+		&& game.map[(game.size_y / 48)][0] != '\0')
 		message("Incorrect map\n", &game);
 	while (game.map[b][j])
 	{

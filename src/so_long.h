@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcatalan@student.42barcelona.com <mcata    +#+  +:+       +#+        */
+/*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 15:45:47 by mcatalan          #+#    #+#             */
-/*   Updated: 2023/11/03 10:38:21 by mcatalan@st      ###   ########.fr       */
+/*   Updated: 2023/11/03 11:24:38 by mcatalan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,6 @@ void	print_map_copy(t_game *game);
 void	print_map(t_game *game);
 void	print_map_copy(t_game *game);
 
-int msg(char *str);
+int		msg(char *str);
 
 #endif

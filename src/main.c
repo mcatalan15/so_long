@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcatalan@student.42barcelona.com <mcata    +#+  +:+       +#+        */
+/*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 16:32:26 by mcatalan          #+#    #+#             */
-/*   Updated: 2023/11/02 10:54:51 by mcatalan@st      ###   ########.fr       */
+/*   Updated: 2023/11/03 11:23:32 by mcatalan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,7 @@ int	main(int argc, char **argv)
 	t_game	game;
 
 	if (argc != 2)
-	{
-		ft_printf("Error\nJust ./so_long. Add the map wit the .ber extension\n");
-		exit (0);
-	}
+		msg("Error\n./so_long\tAdd the map with the .ber extension\n");
 	game.mlx = mlx_init();
 	ft_window_size(&game, argv);
 	game.window = mlx_new_window(game.mlx, game.size_x, game.size_y,

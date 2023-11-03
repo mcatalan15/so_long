@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcatalan@student.42barcelona.com <mcata    +#+  +:+       +#+        */
+/*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 20:29:44 by mcatalan@st       #+#    #+#             */
-/*   Updated: 2023/11/02 11:39:58 by mcatalan@st      ###   ########.fr       */
+/*   Updated: 2023/11/03 11:24:56 by mcatalan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ void	print_map_copy(t_game *game)
 
 	cols = game->size_x / 48;
 	rows = game->size_y / 48;
-
 	for (int i = 0; i < rows; i++)
 	{
 		for (int j = 0; j < cols; j++)
@@ -32,8 +31,9 @@ void	print_map_copy(t_game *game)
 
 void	print_map(t_game *game)
 {
-	int i = 0;
+	int	i;
 
+	i = 0;
 	while (game->map[i])
 	{
 		printf("%s\n", game->map[i]);

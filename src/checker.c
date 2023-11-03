@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcatalan@student.42barcelona.com <mcata    +#+  +:+       +#+        */
+/*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 12:49:25 by mcatalan@st       #+#    #+#             */
-/*   Updated: 2023/11/03 10:42:00 by mcatalan@st      ###   ########.fr       */
+/*   Updated: 2023/11/03 11:21:20 by mcatalan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ int	copy_map(t_game *game)
 	game->map_copy = (char **)malloc(rows * sizeof(char *));
 	if (game->map_copy == NULL)
 		return (0);
-
 	for (int i = 0; i < rows; i++)
 	{
 		(game->map_copy)[i] = (char *)malloc((cols + 1) * sizeof(char));
@@ -44,7 +43,6 @@ int	copy_map(t_game *game)
 		}
 		ft_strcpy((game->map_copy)[i], game->map[i]);
 	}
-
 	return (1);
 }
 
@@ -55,7 +53,6 @@ bool	is_valid_move(t_game *game, int row, int col)
 
 	numcols = game->size_x / 48;
 	numrows = game->size_y / 48;
-
 	if ((row >= 0 && row < numrows && col >= 0 && col < numcols)
 		&& (game->map_copy[row][col] == 'C' || game->map_copy[row][col] == 'E'
 	|| game->map_copy[row][col] == '0'))
@@ -71,11 +68,8 @@ bool	is_valid_move(t_game *game, int row, int col)
 
 bool	find_path(t_game *game, int row, int col)
 {
-
 	game->map_copy[row][col] = '.';
-
 	int moves[4][2] = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
-	
 	for (int i = 0; i < 4; i++)
 	{
 		int new_row = row + moves[i][0];
@@ -90,7 +84,6 @@ bool	find_path(t_game *game, int row, int col)
 		}
 	}
 	game->map_copy[row][col] = 'X';
-
 	return (false);
 }
 
@@ -121,5 +114,4 @@ void	checker(t_game *game)
 		printf("EL mapa es solucionalble\n");
 	else
 		msg("The map has no solution\n");
-	
 }
