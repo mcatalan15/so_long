@@ -6,7 +6,7 @@
 /*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 18:31:32 by mcatalan@st       #+#    #+#             */
-/*   Updated: 2023/11/03 11:13:53 by mcatalan         ###   ########.fr       */
+/*   Updated: 2023/11/03 11:18:21 by mcatalan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,7 @@ void	create_floor(t_game game, int b)
 	while (game.map[b][j])
 	{
 		if (!(ft_strchr("1PCE0", game.map[b][j])))
-		{
 			message("Error\nIncorrect characters\n", &game);
-		}
 		image.relative_path = "./img/asphalt.xpm";
 		put_image(image, (j * SIZE), (b * SIZE));
 		j++;
