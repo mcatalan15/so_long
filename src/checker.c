@@ -6,45 +6,11 @@
 /*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 12:49:25 by mcatalan@st       #+#    #+#             */
-/*   Updated: 2023/11/03 11:21:20 by mcatalan         ###   ########.fr       */
+/*   Updated: 2023/11/03 11:57:40 by mcatalan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-int	copy_map(t_game *game)
-{
-	int	rows;
-	int	cols;
-
-	cols = game->size_x / 48;
-	rows = game->size_y / 48;
-	if (game->map_copy != NULL)
-	{
-		for (int i = 0; i < rows; i++)
-			free(game->map_copy[i]);
-		free(game->map_copy);
-	}
-	game->map_copy = (char **)malloc(rows * sizeof(char *));
-	if (game->map_copy == NULL)
-		return (0);
-	for (int i = 0; i < rows; i++)
-	{
-		(game->map_copy)[i] = (char *)malloc((cols + 1) * sizeof(char));
-		if ((game->map_copy)[i] == NULL)
-		{
-			for (int j = 0; j < i; j++)
-			{
-				free((game->map_copy)[j]);
-			}
-			free(game->map_copy);
-			game->map_copy = NULL;
-			message("Error\nNot possible to copy the map\n", game);
-		}
-		ft_strcpy((game->map_copy)[i], game->map[i]);
-	}
-	return (1);
-}
 
 bool	is_valid_move(t_game *game, int row, int col)
 {
@@ -68,13 +34,17 @@ bool	is_valid_move(t_game *game, int row, int col)
 
 bool	find_path(t_game *game, int row, int col)
 {
+	int	i;
+	int	new_row;
+	int	new_col;
+
+	i = 0;
 	game->map_copy[row][col] = '.';
 	int moves[4][2] = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
-	for (int i = 0; i < 4; i++)
+	while (i < 4)
 	{
-		int new_row = row + moves[i][0];
-		int new_col = col + moves[i][1];
-
+		new_row = row + moves[i][0];
+		new_col = col + moves[i][1];
 		if (is_valid_move(game, new_row, new_col))
 		{
 			if (find_path(game, new_row, new_col))
@@ -82,6 +52,7 @@ bool	find_path(t_game *game, int row, int col)
 				return (true);
 			}
 		}
+		i++;
 	}
 	game->map_copy[row][col] = 'X';
 	return (false);
@@ -93,13 +64,17 @@ void	checker(t_game *game)
 	size_t	start_col;
 	size_t	size_y;
 	size_t	size_x;
+	size_t	i;
+	size_t	j;
 
+	i = 0;
 	size_x = game->size_x / 48;
 	size_y = (game->size_y / 48);
 	copy_map(game);
-	for (size_t i = 0; i < size_y; i++)
+	while (i < size_y)
 	{
-		for (size_t j = 0; j < size_x; j++)
+		j = 0;
+		while (j < size_x)
 		{
 			if (game->map_copy[i][j] == 'P')
 			{
@@ -107,7 +82,9 @@ void	checker(t_game *game)
 				start_col = j;
 				break ;
 			}
+			j++;
 		}
+		i++;
 	}
 	find_path(game, start_row, start_col);
 	if (game->find_end && game->items == game->num_coins_find)

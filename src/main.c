@@ -6,18 +6,11 @@
 /*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 16:32:26 by mcatalan          #+#    #+#             */
-/*   Updated: 2023/11/03 11:23:32 by mcatalan         ###   ########.fr       */
+/*   Updated: 2023/11/03 11:43:52 by mcatalan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-void	message(char *msg, t_game *game)
-{
-	ft_printf("%s", msg);
-	map_destroy(game);
-	exit(0);
-}
 
 int	keyboard(int key_code, t_game *game)
 {

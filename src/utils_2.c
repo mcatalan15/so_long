@@ -6,26 +6,45 @@
 /*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 20:29:44 by mcatalan@st       #+#    #+#             */
-/*   Updated: 2023/11/03 11:24:56 by mcatalan         ###   ########.fr       */
+/*   Updated: 2023/11/03 11:43:58 by mcatalan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+int	msg(char *str)
+{
+	ft_printf("%s", str);
+	exit (0);
+}
+
+void	message(char *msg, t_game *game)
+{
+	ft_printf("%s", msg);
+	map_destroy(game);
+	exit(0);
+}
+
 void	print_map_copy(t_game *game)
 {
 	int	rows;
 	int	cols;
+	int	i;
+	int	j;
 
+	i = 0;
 	cols = game->size_x / 48;
 	rows = game->size_y / 48;
-	for (int i = 0; i < rows; i++)
+	while (i < rows)
 	{
-		for (int j = 0; j < cols; j++)
+		j = 0;
+		while (j < cols)
 		{
 			printf("%c", game->map_copy[i][j]);
+			j++;
 		}
 		printf("\n");
+		i++;
 	}
 }
 

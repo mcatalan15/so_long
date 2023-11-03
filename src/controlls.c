@@ -6,7 +6,7 @@
 /*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 20:37:30 by mcatalan@st       #+#    #+#             */
-/*   Updated: 2023/11/03 11:02:48 by mcatalan         ###   ########.fr       */
+/*   Updated: 2023/11/03 11:43:23 by mcatalan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,6 @@ void	wall_control(t_game *game)
 		}
 		y++;
 	}
-}
-
-int	msg(char *str)
-{
-	ft_printf("%s", str);
-	exit (0);
 }
 
 void	map_control(t_game *game)
