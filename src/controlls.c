@@ -6,7 +6,7 @@
 /*   By: mcatalan@student.42barcelona.com <mcata    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 20:37:30 by mcatalan@st       #+#    #+#             */
-/*   Updated: 2023/10/31 11:29:04 by mcatalan@st      ###   ########.fr       */
+/*   Updated: 2023/11/03 10:46:01 by mcatalan@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,21 @@ void	wall_control(t_game *game)
 		while (x < (game->size_x / SIZE))
 		{
 			if ((y == 0 || x == 0) && game->map[y][x] != '1')
-				message("Error\nThe map must be walled\n", game);
+				msg("Error\nThe map must be walled\n");
 			else if ((y == (game->size_y / SIZE - 1)
 					|| x == (game->size_x / SIZE - 1))
 				&& game->map[y][x] != '1')
-				message("Error\nThe map must be walled!\n", game);
+				msg("Error\nThe map must be walled!\n");
 			x++;
 		}
 		y++;
 	}
+}
+
+int	msg(char *str)
+{
+	ft_printf("%s", str);
+	exit (0);
 }
 
 void	map_control(t_game *game)
@@ -53,13 +59,13 @@ void	map_control(t_game *game)
 		i++;
 	}
 	if (game->items == 0)
-		message("Error\nNo items to collect on the map!\n", game);
+		msg("Error\nNo items to collect on the map!\n");
 	if (game->exitpos == 0)
-		message("Error\nNo exit door on the map!\n", game);
+		msg("Error\nNo exit door on the map!\n");
 	if (game->ppos < 1)
-		message("Error\nThere's no player on the map!\n", game);
+		msg("Error\nThere's no player on the map!\n");
 	if (game->ppos > 1)
-		message("Error\nThere's more than 1 player on the map!\n", game);
+		msg("Error\nThere's more than 1 player on the map!\n");
 }
 
 void	game_control(t_game *game)

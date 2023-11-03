@@ -6,7 +6,7 @@
 /*   By: mcatalan@student.42barcelona.com <mcata    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 15:45:47 by mcatalan          #+#    #+#             */
-/*   Updated: 2023/11/01 18:43:19 by mcatalan@st      ###   ########.fr       */
+/*   Updated: 2023/11/03 10:38:21 by mcatalan@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,5 +74,7 @@ void	print_map_copy(t_game *game);
 // utils2.c
 void	print_map(t_game *game);
 void	print_map_copy(t_game *game);
+
+int msg(char *str);
 
 #endif
