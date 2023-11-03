@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcatalan@student.42barcelona.com <mcata    +#+  +:+       +#+        */
+/*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 18:31:32 by mcatalan@st       #+#    #+#             */
-/*   Updated: 2023/11/02 11:50:37 by mcatalan@st      ###   ########.fr       */
+/*   Updated: 2023/11/03 11:13:53 by mcatalan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,7 @@
 int	map_destroy(t_game *game)
 {
 	int	i;
-	// int	rows;
-	// int	cols;
 
-	// rows = game->size_y / 48;
-	// cols = game->size_x / 48;
 	i = 0;
 	if (!game->map)
 		return (1);
@@ -28,14 +24,6 @@ int	map_destroy(t_game *game)
 		free(game->map[i]);
 		i++;
 	}
-	// for (int i = 0; i < rows; i++)
-	// {
-	// 	for (int j = 0; j < cols; j++)
-	// 	{
-	// 		printf("%c", game->map[i][j]);
-	// 	}
-	// 	printf("\n");
-	// }
 	return (0);
 }
 
@@ -67,15 +55,12 @@ void	create_floor(t_game game, int b)
 
 	image.wlx = game;
 	j = 0;
-	// if (ft_strlen(game.map[b]) != game.size_x / 48 && b != (game.size_y / 48))
-	// 	message("The map is not rectangular\n", &game);
 	if (game.map[(game.size_y / 48)] && game.map[(game.size_y / 48)][0] != '\0')
 		message("Incorrect map\n", &game);
 	while (game.map[b][j])
 	{
 		if (!(ft_strchr("1PCE0", game.map[b][j])))
 		{
-			ft_printf("%c\n",game.map[b][j]);
 			message("Error\nIncorrect characters\n", &game);
 		}
 		image.relative_path = "./img/asphalt.xpm";
@@ -111,7 +96,6 @@ void	create_map_line(t_game *game, char **argv)
 	int		i;
 
 	game->map = (char **)ft_calloc(sizeof(char *), (9999));
-	// game->map = (char **)malloc(sizeof(char *) * (9999));
 	fd = open(argv[1], O_RDONLY);
 	i = 0;
 	while (i <= game->size_y / 48)
