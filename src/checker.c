@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: mcatalan@student.42barcelona.com <mcata    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 12:49:25 by mcatalan@st       #+#    #+#             */
-/*   Updated: 2023/11/03 11:57:40 by mcatalan         ###   ########.fr       */
+/*   Updated: 2023/11/04 18:14:58 by mcatalan@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,18 +58,16 @@ bool	find_path(t_game *game, int row, int col)
 	return (false);
 }
 
-void	checker(t_game *game)
+void	initialize_and_copy_map(t_game *game, size_t *s_row, size_t *s_col)
 {
-	size_t	start_row;
-	size_t	start_col;
-	size_t	size_y;
 	size_t	size_x;
+	size_t	size_y;
 	size_t	i;
 	size_t	j;
 
-	i = 0;
 	size_x = game->size_x / 48;
-	size_y = (game->size_y / 48);
+	size_y = game->size_y / 48;
+	i = 0;
 	copy_map(game);
 	while (i < size_y)
 	{
@@ -78,17 +76,25 @@ void	checker(t_game *game)
 		{
 			if (game->map_copy[i][j] == 'P')
 			{
-				start_row = i;
-				start_col = j;
-				break ;
+				*s_row = i;
+				*s_col = j;
+				return ;
 			}
 			j++;
 		}
 		i++;
 	}
+}
+
+void	checker(t_game *game)
+{
+	size_t	start_row;
+	size_t	start_col;
+
+	initialize_and_copy_map(game, &start_row, &start_col);
 	find_path(game, start_row, start_col);
 	if (game->find_end && game->items == game->num_coins_find)
-		printf("EL mapa es solucionalble\n");
+		printf("EL mapa es solucionable\n");
 	else
 		msg("The map has no solution\n");
 }
