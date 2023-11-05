@@ -6,7 +6,7 @@
 /*   By: mcatalan@student.42barcelona.com <mcata    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 12:49:25 by mcatalan@st       #+#    #+#             */
-/*   Updated: 2023/11/04 18:14:58 by mcatalan@st      ###   ########.fr       */
+/*   Updated: 2023/11/05 20:40:07 by mcatalan@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,25 +34,26 @@ bool	is_valid_move(t_game *game, int row, int col)
 
 bool	find_path(t_game *game, int row, int col)
 {
-	int	i;
-	int	new_row;
-	int	new_col;
-
-	i = 0;
 	game->map_copy[row][col] = '.';
-	int moves[4][2] = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
-	while (i < 4)
+	if (is_valid_move(game, row - 1, col))
 	{
-		new_row = row + moves[i][0];
-		new_col = col + moves[i][1];
-		if (is_valid_move(game, new_row, new_col))
-		{
-			if (find_path(game, new_row, new_col))
-			{
-				return (true);
-			}
-		}
-		i++;
+		if (find_path(game, row - 1, col))
+			return (true);
+	}
+	if (is_valid_move(game, row + 1, col))
+	{
+		if (find_path(game, row + 1, col))
+			return (true);
+	}
+	if (is_valid_move(game, row, col - 1))
+	{
+		if (find_path(game, row, col - 1))
+			return (true);
+	}
+	if (is_valid_move(game, row, col + 1))
+	{
+		if (find_path(game, row, col + 1))
+			return (true);
 	}
 	game->map_copy[row][col] = 'X';
 	return (false);
@@ -94,7 +95,7 @@ void	checker(t_game *game)
 	initialize_and_copy_map(game, &start_row, &start_col);
 	find_path(game, start_row, start_col);
 	if (game->find_end && game->items == game->num_coins_find)
-		printf("EL mapa es solucionable\n");
+		printf("\n");
 	else
 		msg("The map has no solution\n");
 }
