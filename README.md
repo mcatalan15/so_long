@@ -1,8 +1,9 @@
 # so_long | mcatalan
 
-<div align="center">
+<!-- <div align="center">
 	<img src=/>
-</div>
+</div> -->
+![Game image 1](read/game_img_1.jpg)
 
 ### Table of Contents
 
