@@ -6,7 +6,7 @@
 /*   By: mcatalan@student.42barcelona.com <mcata    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 11:43:10 by mcatalan@st       #+#    #+#             */
-/*   Updated: 2023/10/31 12:12:47 by mcatalan@st      ###   ########.fr       */
+/*   Updated: 2023/11/06 17:35:46 by mcatalan@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ void	right(t_game *game)
 	j = game->player.x + 48;
 	if ((move_check(game, (i / 48), (j / 48)) != 1))
 	{
-		game->player.hareket++;
-		ft_printf("Number of movements = %d\n", game->player.hareket);
+		game->player.move++;
+		ft_printf("Number of movements = %d\n", game->player.move);
 		update(game, j, i);
 		game->player.y = i;
 		game->player.x = j;
@@ -57,8 +57,8 @@ void	left(t_game *game)
 	j = game->player.x - 48;
 	if ((move_check(game, (i / 48), (j / 48)) != 1))
 	{
-		game->player.hareket++;
-		ft_printf("Number of movements = %d\n", game->player.hareket);
+		game->player.move++;
+		ft_printf("Number of movements = %d\n", game->player.move);
 		update(game, j, i);
 		game->player.y = i;
 		game->player.x = j;
@@ -78,8 +78,8 @@ void	up(t_game *game)
 	j = game->player.x;
 	if ((move_check(game, (i / 48), (j / 48)) != 1))
 	{
-		game->player.hareket++;
-		ft_printf("Number of movements = %d\n", game->player.hareket);
+		game->player.move++;
+		ft_printf("Number of movements = %d\n", game->player.move);
 		update(game, j, i);
 		game->player.y = i;
 		game->player.x = j;
@@ -99,8 +99,8 @@ void	down(t_game *game)
 	j = game->player.x;
 	if ((move_check(game, (i / 48), (j / 48)) != 1))
 	{
-		game->player.hareket++;
-		ft_printf("Number of movements = %d\n", game->player.hareket);
+		game->player.move++;
+		ft_printf("Number of movements = %d\n", game->player.move);
 		update(game, j, i);
 		game->player.y = i;
 		game->player.x = j;

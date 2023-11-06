@@ -6,7 +6,7 @@
 /*   By: mcatalan@student.42barcelona.com <mcata    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 10:25:05 by mcatalan@st       #+#    #+#             */
-/*   Updated: 2023/10/31 11:33:13 by mcatalan@st      ###   ########.fr       */
+/*   Updated: 2023/11/06 17:35:46 by mcatalan@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ typedef struct s_player
 	int	x;
 	int	y;
 	int	coin;
-	int	hareket;
+	int	move;
 
 }	t_player;
 
