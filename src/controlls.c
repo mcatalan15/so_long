@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   controlls.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: mcatalan@student.42barcelona.com <mcata    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 20:37:30 by mcatalan@st       #+#    #+#             */
-/*   Updated: 2023/11/03 11:43:23 by mcatalan         ###   ########.fr       */
+/*   Updated: 2023/11/07 19:59:08 by mcatalan@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,9 @@ void	map_control(t_game *game)
 		msg("Error\nNo items to collect on the map!\n");
 	if (game->exitpos == 0)
 		msg("Error\nNo exit door on the map!\n");
-	if (game->ppos < 1)
+	if (game->pcount < 1)
 		msg("Error\nThere's no player on the map!\n");
-	if (game->ppos > 1)
+	if (game->pcount > 1)
 		msg("Error\nThere's more than 1 player on the map!\n");
 }
 
@@ -80,7 +80,7 @@ void	game_control(t_game *game)
 			{
 				game->player.x = j * SIZE;
 				game->player.y = i * SIZE;
-				game->ppos++;
+				game->pcount++;
 			}
 			j++;
 		}

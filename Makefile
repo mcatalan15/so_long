@@ -6,7 +6,7 @@
 #    By: mcatalan@student.42barcelona.com <mcata    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/04 10:58:09 by mcatalan@st       #+#    #+#              #
-#    Updated: 2023/11/02 20:37:10 by mcatalan@st      ###   ########.fr        #
+#    Updated: 2023/11/07 19:55:06 by mcatalan@st      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,10 +42,17 @@ LIBS = -L$(LIBFT_DIR) -lft -L$(PRINTF_DIR) -lftprintf -L$(MLX_DIR) -lmlx -g -fra
 INC_DIRS = -I$(LIBFT_DIR)/includes -I$(PRINTF_DIR)/includes -I$(MLX_DIR) -I$(SRC_DIR)
 
 # Build rules
-all: $(TARGET)
-	@echo "$(GREEN)Building all targets...$(RESET)"
+all: subsystems $(TARGET)
+	@echo "$(GREEN)Build finished$(RESET)"
+
+subsystems:
+	@make -s -C $(LIBFT_DIR)
+	@make -s -C $(PRINTF_DIR)
+	@make -s -C $(MLX_DIR)
+
 
 $(TARGET): $(OBJ_FILES)
+	@echo "$(GREEN)Bulding libs and objets...$(RESET)"
 	$(CC) $(CFLAGS) $(GDBFLAG) $(INC_DIRS) $^ -o $@ $(LIBS)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
@@ -54,11 +61,18 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 
 clean:
 	@echo "$(RED)Cleaning up objets...$(RESET)"
+	@make -s -C $(MLX_DIR) clean
+	@make -s -C $(LIBFT_DIR) clean
+	@make -s -C $(PRINTF_DIR) clean
 	rm -rf $(OBJ_DIR)
 
 fclean: clean
 	@echo "$(RED)Cleaning all...$(RESET)"
 	rm -f $(TARGET)
+	@echo "$(RED)Cleaning libft...$(RESET)"
+	@make -s -C $(LIBFT_DIR) fclean
+	@echo "$(RED)Cleaning ft_printf...$(RESET)"
+	@make -s -C $(PRINTF_DIR) fclean
 
 re: fclean all
 

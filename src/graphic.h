@@ -6,7 +6,7 @@
 /*   By: mcatalan@student.42barcelona.com <mcata    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 10:25:05 by mcatalan@st       #+#    #+#             */
-/*   Updated: 2023/11/06 17:35:46 by mcatalan@st      ###   ########.fr       */
+/*   Updated: 2023/11/07 19:59:08 by mcatalan@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ typedef struct s_game
 	char		**map;
 	char		**map_copy;
 	int			items;
-	int			ppos;
+	int			pcount;
 	int			exitpos;
 	size_t		size_x;
 	int			size_y;

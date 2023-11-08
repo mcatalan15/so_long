@@ -6,7 +6,7 @@
 /*   By: mcatalan@student.42barcelona.com <mcata    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 16:32:26 by mcatalan          #+#    #+#             */
-/*   Updated: 2023/11/06 17:35:46 by mcatalan@st      ###   ########.fr       */
+/*   Updated: 2023/11/07 20:08:21 by mcatalan@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	init_struct(t_game *game)
 	game->exitpos = 0;
 	game->player.coin = 0;
 	game->player.move = 0;
-	game->ppos = 0;
+	game->pcount = 0;
 	game->map_copy = NULL;
 	game->num_coins_find = 0;
 	game->find_end = false;
