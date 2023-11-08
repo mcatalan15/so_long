@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_2.c                                          :+:      :+:    :+:   */
+/*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: mcatalan@student.42barcelona.com <mcata    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 20:29:44 by mcatalan@st       #+#    #+#             */
-/*   Updated: 2023/11/03 11:43:58 by mcatalan         ###   ########.fr       */
+/*   Updated: 2023/11/08 11:27:35 by mcatalan@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,10 @@ void	print_map_copy(t_game *game)
 		j = 0;
 		while (j < cols)
 		{
-			printf("%c", game->map_copy[i][j]);
+			ft_printf("%c", game->map_copy[i][j]);
 			j++;
 		}
-		printf("\n");
+		ft_printf("\n");
 		i++;
 	}
 }
@@ -55,7 +55,7 @@ void	print_map(t_game *game)
 	i = 0;
 	while (game->map[i])
 	{
-		printf("%s\n", game->map[i]);
+		ft_printf("%s\n", game->map[i]);
 		i++;
 	}
 }
