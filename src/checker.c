@@ -6,7 +6,7 @@
 /*   By: mcatalan@student.42barcelona.com <mcata    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 12:49:25 by mcatalan@st       #+#    #+#             */
-/*   Updated: 2023/11/05 20:40:07 by mcatalan@st      ###   ########.fr       */
+/*   Updated: 2023/11/09 13:18:11 by mcatalan@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ void	checker(t_game *game)
 	initialize_and_copy_map(game, &start_row, &start_col);
 	find_path(game, start_row, start_col);
 	if (game->find_end && game->items == game->num_coins_find)
-		printf("\n");
+		ft_printf("\n");
 	else
 		msg("The map has no solution\n");
 }

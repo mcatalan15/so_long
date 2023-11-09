@@ -6,7 +6,7 @@
 /*   By: mcatalan@student.42barcelona.com <mcata    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 20:37:30 by mcatalan@st       #+#    #+#             */
-/*   Updated: 2023/11/07 19:59:08 by mcatalan@st      ###   ########.fr       */
+/*   Updated: 2023/11/09 13:18:31 by mcatalan@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ int	move_check(t_game *game, int i, int j)
 	{
 		if (game->player.coin != game->items)
 		{
-			printf("There are items left to be collected!\n");
+			ft_printf("There are items left to be collected!\n");
 			return (1);
 		}
 		msg("You win!\n");
